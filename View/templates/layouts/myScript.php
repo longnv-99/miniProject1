@@ -1,7 +1,39 @@
 <script>
+
     $(document).on('click', '#manageProduct', function(){
         //alert('click');
         $('#target-content').load('http://localhost/miniProject1/?controller=Product&action=all'); //gọi controller
+    })
+
+    $(document).on('blur', '#name', function(){
+        //console.log('blur');
+        if($("input[name=name]").val() == ""){
+            $('#name-error').text('Please enter name!');
+            $('input#name').focus();
+        }else{
+            $('#name-error').text('');
+        }
+    })
+
+    $(document).on('blur', '#price', function(){
+        if($("input[name=price]").val() == ""){
+            $('#price-error').text('Please enter price!');
+            $('input#price').focus();
+        }else if($("input[name=price]").val() <= 0){
+            $('#price-error').text('Invalid price. Re-enter!');
+            $('input#price').focus();
+        }else{
+            $('#price-error').text('');
+        }
+    })
+
+    $(document).on('blur', 'textarea', function(){
+        if($("textarea").val() == ""){
+            $('#des-error').text('Please enter description!');
+            $('textarea').focus();
+        }else{
+            $('#des-error').text('');
+        }
     })
 
     /*set label for file input if change*/
@@ -10,7 +42,21 @@
         $('.custom-file-label').text(image);
     })
 
-        /* click save */
+    /**reset input in modal in case after click edit but not update, then click add */
+    $(document).on('click', 'button.close', function() {
+        $("input[name=id]").val('');
+        $("input[name=name]").val('');
+        $("input[name=price]").val('');
+        $("textarea").val('');
+        $('.custom-file-label').text('');
+
+        $('#name-error').text('');
+        $('#price-error').text('');
+        $('#des-error').text('');
+        $('#image-error').text('');
+    })
+
+    /* click save */
     $(document).on('click', '.btn-primary.add', function() {
 
         let id = $("input[name=id]").val();
@@ -20,10 +66,7 @@
         let image = $("input[name=image]").prop('files')[0];
 
         console.log(image);
-        //return;
-        //console.log($("input[name=image]")[0].files);
-        //return;
-
+        
         if(name == "" || price == "" || des==""){
             alert("Please enter fully!");
             return;
@@ -36,6 +79,10 @@
         fd.append('price', price);
         fd.append('des', des);
         fd.append('image', image);
+
+        if(id!="" && image==null){
+            fd.append('imageUrl',  $('.custom-file-label').val());
+        }
 
         $.ajax({
             url: 'http://localhost/miniProject1/?controller=Product&action=add',
@@ -99,4 +146,60 @@
         });
     })
 
+    /**click edit, send param  */
+    function editProduct(x) {
+        $.ajax({
+            url: 'http://localhost/miniproject1/?controller=Product&action=edit',
+            type: 'POST',
+            data: {
+                'id': x
+            },
+            success: function(response) {
+                var response = JSON.parse(response);
+                console.log("response"+ response);
+                $("input[name=id]").val(response.data[0]);
+                $("input[name=name]").val(response.data[1]);
+                $("input[name=price]").val(response.data[2]);
+                $("textarea").val(response.data[4]);
+                $('.custom-file-label').text(response.data[3].slice(13));
+                $('.modal.fade').modal('show');
+            }
+        })
+    }
+
+    /** click delete */
+    function deleteProduct(x) {
+        var selection = confirm('Are you sure to delete this product?');
+        if (selection) {
+            $.ajax({
+                url: 'http://localhost/miniproject1/?controller=Product&action=delete',
+                type: 'POST',
+                data: {
+                    id: x
+                },
+                success: function(response) {
+                    $('#tr_' + x).remove();
+                }
+            })
+        }
+    }
+
+    $(document).on('blur', 'input#username', function(){
+        if($("input[name=username]").val() == ""){
+            $('#username-error').text('Enter username');
+            $('input#username').focus();
+        }else{
+            $('#username-error').text('');
+        }
+    })
+
+    $(document).on('blur', 'input#password', function(){
+        if($("input[name=password]").val() == ""){
+            $('#password-error').text('Enter password');
+            $('input#password').focus();
+        }else{
+            $('#password-error').text('');
+            $('#buttonSubmit').removeAttr('disabled');
+        }
+    })
 </script>

@@ -1,7 +1,7 @@
 <?php
     define('HOST','localhost');
-    define('USERNAME','truongdx');
-    define('PASSWORD','120499');
+    define('USERNAME','root');
+    define('PASSWORD','');
     define('DATABASE','miniproject1');
 
     class DAO{
