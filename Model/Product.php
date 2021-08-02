@@ -31,13 +31,17 @@ class Product extends DAO{
         $name = $data['name'];
         $price = $data['price'];
         $des = $data['des'];
-        $image = "upload_image/".$_FILES['image']['name'];
+        $image = $_FILES['image']['name'];
+        //$image = "upload_image/".$_FILES['image']['name'];
         $sql = "INSERT INTO product (`name`, `price`, `image`, `des`) VALUES ('$name', '$price','$image', '$des')";
         $result = $this->conn->query($sql);
         if($result){
             $last_id = $this->conn->insert_id;
-            move_uploaded_file($_FILES['image']['tmp_name'], './View/'.$image);
-            $response = json_encode(array("statusCode"=>200, "last_id"=>$last_id));
+            if(move_uploaded_file($_FILES['image']['tmp_name'], '/opt/lampp/htdocs/miniProject1/View/upload_image'))
+            //if(move_uploaded_file($_FILES['image']['tmp_name'], './View/'.$image))
+                $response = json_encode(array("statusCode"=>200, "last_id"=>$last_id));
+            else
+            $response = json_encode(array("statusCode"=>100, "last_id"=>$last_id));
         }else
             $response = json_encode(array("statusCode"=>404));
         echo $response;

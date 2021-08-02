@@ -1,7 +1,7 @@
 <script>
     $(document).on('click', '#manageProduct', function(){
         //alert('click');
-        $('#target-content').load('http://localhost/miniproject1/?controller=Product&action=all'); //gọi controller
+        $('#target-content').load('http://localhost/miniProject1/?controller=Product&action=all'); //gọi controller
     })
 
     /*set label for file input if change*/
@@ -38,13 +38,14 @@
         fd.append('image', image);
 
         $.ajax({
-            url: 'http://localhost/miniproject1/?controller=Product&action=add',
+            url: 'http://localhost/miniProject1/?controller=Product&action=add',
             type: 'POST',
             processData: false,
             contentType: false,
             data: fd,
             success: function(response) {
                 var response = JSON.parse(response);
+                console.log('hshshsh');
                 console.log(response);
                 if (response.statusCode == 500) {
                     //alert(JSON.stringify(response.error));
