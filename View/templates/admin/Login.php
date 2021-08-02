@@ -1,3 +1,15 @@
+<?php 
+session_start();
+include('../layouts/header.php'); 
+$username = "";
+$password = "";
+$checked = false;
+if(isset($_COOKIE['username']) && isset($_COOKIE['password'])){
+    $username = $_COOKIE['username'];
+    $password = $_COOKIE['password'];
+    $checked = true;
+}
+?>
 <body class="hold-transition login-page">
     <div class="login-box">
         <!-- /.login-logo -->
@@ -38,7 +50,7 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block" id="buttonSubmit" <?php echo ($checked)? "":"disabled" ?>>Sign In</button>
+                            <button type="submit" class="btn btn-primary btn-block" id="buttonSubmit">Sign In</button>
                         </div>
                         <!-- /.col -->
                     </div>

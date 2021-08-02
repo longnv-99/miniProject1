@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['isLogin'])) {
+  header("location: Login.php");
+}
+define('link_to_imageFolder', './View/');
 include('../layouts/header.php');
 ?>
 
