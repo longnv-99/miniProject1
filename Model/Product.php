@@ -48,7 +48,11 @@ class Product extends DAO{
         $name = $data['name'];
         $price = $data['price'];
         $des = $data['des'];
-        $image = "upload_image/".$data['image']['name'];
+        if(($_FILES['image']['name']) == ""){
+            $image = $data['imageUrl'];
+        }else{
+            $image = "upload_image/".$_FILES['image']['name'];
+        }
         $sql = "UPDATE product SET name='$name', price='$price', image= '$image', des='$des' WHERE id = '$id' ";
         $result = $this->conn->query($sql);
         if($result){

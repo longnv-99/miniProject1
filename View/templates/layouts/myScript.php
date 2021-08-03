@@ -2,7 +2,7 @@
 
     $(document).on('click', '#manageProduct', function(){
         //alert('click');
-        $('#target-content').load('http://localhost/miniproject1/?controller=Product&action=all'); //gọi controller
+        $('#target-content').load('https://localhost/miniProject1_PHP/?controller=Product&action=all'); //gọi controller
     })
 
     $(document).on('blur', '#name', function(){
@@ -85,7 +85,7 @@
         }
 
         $.ajax({
-            url: 'http://localhost/miniproject1/?controller=Product&action=add',
+            url: 'https://localhost/miniproject1_PHP/?controller=Product&action=add',
             type: 'POST',
             processData: false,
             contentType: false,
@@ -148,7 +148,7 @@
     /**click edit, send param  */
     function editProduct(x) {
         $.ajax({
-            url: 'http://localhost/miniproject1/?controller=Product&action=edit',
+            url: 'https://localhost/miniproject1_PHP/?controller=Product&action=edit',
             type: 'POST',
             data: {
                 'id': x
@@ -171,7 +171,7 @@
         var selection = confirm('Are you sure to delete this product?');
         if (selection) {
             $.ajax({
-                url: 'http://localhost/miniproject1/?controller=Product&action=delete',
+                url: 'https://localhost/miniproject1_PHP/?controller=Product&action=delete',
                 type: 'POST',
                 data: {
                     id: x
@@ -198,7 +198,10 @@
             $('input#password').focus();
         }else{
             $('#password-error').text('');
-            $('#buttonSubmit').removeAttr('disabled');
         }
+    })
+
+    $(document).on('focus', 'input#password', function(){
+        $('#buttonSubmit').removeAttr('disabled');
     })
 </script>

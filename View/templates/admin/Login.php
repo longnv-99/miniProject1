@@ -50,7 +50,7 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])){
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block" id="buttonSubmit">Sign In</button>
+                            <button type="submit" class="btn btn-primary btn-block" id="buttonSubmit" <?php echo ($checked)? "":"disabled" ?>>Sign In</button>
                         </div>
                         <!-- /.col -->
                     </div>
