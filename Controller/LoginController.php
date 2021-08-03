@@ -5,6 +5,8 @@ if(isset($_SESSION)){
 require('../Model/User.php');
 
 $data = $_POST;
+// print_r( $data);
+// die;
 $username = $data['username'];
 $password = md5($data['password']);
 

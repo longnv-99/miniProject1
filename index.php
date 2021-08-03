@@ -7,6 +7,6 @@ $controllerName = $controller.'Controller';
 require_once('Controller/'.$controllerName.'.php');
 
 $controller = new $controllerName();
-$controller->$action(); //call method of controller
+$controller->$action();
 
 ?>

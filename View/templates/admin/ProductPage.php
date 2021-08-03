@@ -73,8 +73,8 @@
                                 <input type="file" class="custom-file-input" id="imageSelect" name="image" accept="image/*" required/>
                                 <label class="custom-file-label" for="image"></label>
                             </div>
-                            <span style="color: red;font-style: italic;" id="image-error"></span>
                         </div>
+                        <span style="color: red;font-style: italic;" id="image-error"></span>
                     </div>
                     <div class="form-group">
                         <label for="des" class="col-form-label">Description:</label>
