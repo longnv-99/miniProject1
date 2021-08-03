@@ -149,7 +149,7 @@
     /**click edit, send param  */
     function editProduct(x) {
         $.ajax({
-            url: 'http://localhost/miniproject1/?controller=Product&action=edit',
+            url: 'http://localhost/miniProject1/?controller=Product&action=edit',
             type: 'POST',
             data: {
                 'id': x
@@ -172,7 +172,7 @@
         var selection = confirm('Are you sure to delete this product?');
         if (selection) {
             $.ajax({
-                url: 'http://localhost/miniproject1/?controller=Product&action=delete',
+                url: 'http://localhost/miniProject1/?controller=Product&action=delete',
                 type: 'POST',
                 data: {
                     id: x
