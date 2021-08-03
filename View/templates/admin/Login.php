@@ -4,10 +4,11 @@ include('../layouts/header.php');
 $username = "";
 $password = "";
 $checked = false;
-if(isset($_COOKIE['username']) && isset($_COOKIE['password'])){
-    $username = $_COOKIE['username'];
-    $password = $_COOKIE['password'];
-    $checked = true;
+if(isset($_COOKIE['username']) && isset($_COOKIE['password']) || isset($_SESSION['isLogin'])){
+    // $username = $_COOKIE['username'];
+    // $password = $_COOKIE['password'];
+    // $checked = true;
+    header("Location: http://localhost/miniProject1/View/templates/admin");
 }
 ?>
 <body class="hold-transition login-page">
@@ -50,7 +51,7 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password'])){
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block" id="buttonSubmit">Sign In</button>
+                            <button type="submit" class="btn btn-primary btn-block" id="buttonSubmit" <?php echo ($checked)? "":"disabled" ?>>Sign In</button>
                         </div>
                         <!-- /.col -->
                     </div>

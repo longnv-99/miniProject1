@@ -1,8 +1,8 @@
 <?php
 session_start();
-if (!isset($_SESSION['isLogin'])) {
-  header("location: Login.php");
-}
+// if (!isset($_SESSION['isLogin'])) {
+//   header("location: Login.php");
+// }
 define('link_to_imageFolder', './View/');
 include('../layouts/header.php');
 ?>
@@ -112,4 +112,7 @@ include('../layouts/header.php');
         </div>
       </div>
     </div>
+    <script>
+      console.log(document.cookie);
+    </script>
     <?php include('../layouts/footer.php') ?>

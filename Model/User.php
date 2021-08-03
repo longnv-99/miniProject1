@@ -16,6 +16,18 @@ class User extends DAO{
         $result = mysqli_query($this->conn, $sql);
         return $result;
     }
+
+    // function insert(){
+    //     $username = 'truong';
+    //     $password = password_hash('123', PASSWORD_DEFAULT);
+    //     $sql = "insert into user (username, password) values ('$username', '$password')";
+    //     $result = mysqli_query($this->conn, $sql);
+    //     echo $result;
+    // }
+
 }
+
+// $u = new User();
+// $u->insert();
 
 ?>

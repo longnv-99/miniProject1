@@ -199,7 +199,10 @@
             $('input#password').focus();
         }else{
             $('#password-error').text('');
-            $('#buttonSubmit').removeAttr('disabled');
         }
+    })
+
+    $(document).on('focus', 'input#password', function(){
+        $('#buttonSubmit').removeAttr('disabled');
     })
 </script>

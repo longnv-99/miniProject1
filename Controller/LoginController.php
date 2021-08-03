@@ -5,17 +5,18 @@ if(isset($_SESSION)){
 require('../Model/User.php');
 
 $data = $_POST;
+
 $username = $data['username'];
-$password = md5($data['password']);
+$password = password_hash($data['password'], PASSWORD_DEFAULT);
 
 /**click remember or not */
 if(isset($data['remember'])){
     //create cookies
    setcookie('username', $username, time() + (86400 * 30), "/");
-   setcookie('password', $data['password'], time() + (86400 * 30), "/");
+   setcookie('password', $password, time() + (86400 * 30), "/");
 }else{
     setcookie('username', $username, time() - (86400 * 30), "/");
-    setcookie('password', $data['password'], time() - (86400 * 30), "/");
+    setcookie('password', $password, time() - (86400 * 30), "/");
 }
 
 //call model
