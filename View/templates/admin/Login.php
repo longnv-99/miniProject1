@@ -4,22 +4,23 @@ include('../layouts/header.php');
 $username = "";
 $password = "";
 $checked = false;
+
 if(isset($_COOKIE['username']) && isset($_COOKIE['password']) || isset($_SESSION['isLogin'])){
-    // $username = $_COOKIE['username'];
-    // $password = $_COOKIE['password'];
-    // $checked = true;
-    header("Location: http://localhost/miniProject1/View/templates/admin");
+    header("Location: index.php");
 }
+
 ?>
 <body class="hold-transition login-page">
     <div class="login-box">
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <form action="../../../Controller/LoginController.php" method="post">
+                <form action="http://localhost/miniProject1/index.php" method="post">
+                    <input type="hidden" name="controller" value="Login">
+                    <input type="hidden" name="action" value="checkLogin">
                     <span style="color: red;font-style: italic" id="username-error"></span>
                     <div class="input-group mb-3">
-                        <input autofocus type="text" class="form-control" id="username" name="username" placeholder="Username" value="<?php echo $username ?>">
+                        <input autofocus type="text" class="form-control" id="username" name="username" placeholder="Username">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -29,7 +30,7 @@ if(isset($_COOKIE['username']) && isset($_COOKIE['password']) || isset($_SESSION
                     
                     <span style="color: red;font-style: italic;" id="password-error"></span>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="<?php echo $password ?>">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>

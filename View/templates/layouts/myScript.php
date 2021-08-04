@@ -99,6 +99,14 @@
                     alert('not ok');
                 }
 
+                if(response.statusCode == 400){
+                    console.log(response.errors);
+                    $('#name-error').text(response.errors['nameErr']);
+                    $('#price-error').text(response.errors['priceErr']);
+                    $('#image-error').text(response.errors['imageErr']);
+                    $('#des-error').text(response.errors['desErr']);
+                }
+
                 if (response.statusCode == 200) {
                     $('.modal.fade').modal('toggle');
                     $("input[name=id]").val('');

@@ -1,12 +1,12 @@
 <?php
 
-$controller = $_GET['controller'];
+$controller = $_REQUEST['controller'];
 $action = $_REQUEST['action'];
 
 $controllerName = $controller.'Controller';
 require_once('Controller/'.$controllerName.'.php');
 
 $controller = new $controllerName();
-$controller->$action(); //call method of controller
+$controller->$action();
 
 ?>
